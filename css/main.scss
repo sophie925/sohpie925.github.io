@@ -1,0 +1,299 @@
+$mainColor : #3c5bda;
+$mainColorOpacity : rgb(60,91,218, 0.6);
+$black : black;
+$white : white;
+
+@font-face {
+    font-family: 'NanumSquare';
+    src: url('../font/NanumSquareR.woff');
+}
+
+@mixin desktop {
+    @media screen and (max-width : 1200px) {
+        @content;
+    }
+}
+
+@mixin mobile {
+    @media screen and (max-width : 768px) {
+        @content;
+    }
+}
+
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'NanumSquare';
+    font-weight: 500;
+    font-size: 1.2rem;
+    transition: color 0.25s ease 0s, background-color 0.25s ease 0s;
+
+    &.dark-mode {
+        background: $black;
+        color: $white;
+        .main-header {
+            background: gray;
+            color: $white;
+            opacity: 0.8;
+        }
+        .intro__title {
+            color: $white;
+            text-shadow: 3px 3px 0.8px $mainColorOpacity;
+        }
+        .intro__icon {
+            color: $white;
+        }
+        .main-footer {
+            background: gray;
+        }
+        .go-top__btn {
+            color: $white;
+        }
+        a {
+            color: $white;
+        }
+    }
+    @include mobile {
+        font-size: 1rem;
+    }
+}
+
+h1,h2,h3,h4 {
+    margin-top: 30px;
+    margin-bottom: 5px;
+}
+
+a {
+    color: $black;
+    text-decoration: none;
+    &:active, &:hover {
+        text-decoration:underline
+    }
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+    li {
+        position: relative;
+        padding: 0.2rem 0 0.2rem 1rem;
+        &:before {
+            position: absolute;
+            left: 0;
+            display: inline-block;
+            content: "•";
+            color: $mainColor;
+        }
+    }
+}
+
+.main-header {
+    width: 100%;
+    height: 4rem;
+    background: $white;
+    color: $mainColor;
+    padding: 0 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
+    display: flex;
+    z-index: 999;
+
+    &__inner {
+        width: 100%;
+        max-width: 1200px;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    &__title {
+        font-size: 2rem;
+        font-weight: 800;
+    }
+    &__icon {
+        display: none;
+        font-size: 2rem;
+        cursor: pointer;
+        &.show {
+            display: block;
+        }
+    }
+}
+
+
+.main-container {
+    margin-top: 4rem;
+
+    .go-top {
+        bottom: 40px;
+        position: sticky;
+        right: 0;
+        text-align: end;
+        width: 98%;
+        
+        &__btn {
+            border: none;
+            background: none;
+            color: $mainColor;
+            cursor: pointer;
+            transition: opacity  0.5s ease;
+
+            &:active {
+                cursor: pointer;
+            }
+            span {
+                font-size: 3rem;
+            }
+        }
+    }
+}
+
+@mixin grid-col($col) {
+    grid-template-columns: $col;
+}
+
+.main-section {
+    &__inner {
+        max-width: 1200px;
+        padding: 1rem 2rem;
+        margin: auto;
+        margin-block: 1rem;
+        position: relative;
+        overflow-y: hidden;
+    }
+    &__title {
+        display: inline;
+        background: linear-gradient(180deg, rgba(0,0,0,0) 60%, $mainColorOpacity 40%);
+        border-radius: 2px;
+        font-size: 2rem;
+
+        @include mobile {
+            font-size: 1.5rem;
+        }    
+    }
+    &__content {
+        padding: 2rem 1rem;
+        @include mobile {
+            padding: 1rem 0;
+        }
+    }
+    &__grid {
+        display: grid;
+        @include grid-col(0.5fr 1fr);
+
+        @include mobile {
+            @include grid-col(1fr);
+        }
+    }
+    &__grid2 {
+        display: grid;
+    }
+    &__grid3 {
+        display: grid;
+        @include grid-col(0.5fr 1fr);
+
+        @include mobile {
+            @include grid-col(0.3fr 1fr);
+        }
+    }
+    &__pill {
+        display: inline-flex;
+        margin-right: 2px;
+        margin-bottom: 10px;
+        border: 1px solid lightgray;
+        border-radius: 100px;
+        padding: 3px 12px 5px;
+    }
+    &__career {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.intro {
+    padding-top: 1px;
+
+    &__inner {
+        width: 100%;
+        max-width: 1200px;
+        margin: 5rem auto;
+        padding: 3rem;
+        display: grid;
+        @include grid-col(0.5fr 1fr);
+
+        @include mobile {
+            @include grid-col(1fr);
+            margin: 0;
+        }
+    }
+    &__box {
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    &__icon {
+        color: $mainColor;
+        position: absolute;
+        font-size: 15rem;
+        transform: rotate(90deg);
+    }
+    &__content {
+        > p {
+            line-height: 2rem;
+            @include mobile {
+                line-height: 1.7rem;
+            }
+        }
+    }
+    &__title {
+        font-size: 5rem;
+        margin-top: 0;
+        color: $mainColor;
+        text-shadow: 3px 3px 0.8px #ddd;
+
+        @include mobile {
+            font-size: 3rem;
+            margin-top: 1.5rem;
+        }
+    }
+}
+
+.logo-box {
+    width: 100px;
+    height: 100px;
+    background: $mainColor;
+    color: $white;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 0;
+}
+
+.main-footer {
+    background: $mainColor;
+    color: $white;
+    font-weight: 200;
+
+    &__inner {
+        text-align: center;
+        padding: 2rem 0;
+        font-size: 0.8rem;
+    }
+    &__icon {
+        font-size: 2rem;
+        transform: rotate(90deg);
+    }
+}
+
