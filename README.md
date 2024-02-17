@@ -2,4 +2,4 @@
 
 resume 사이트 입니다.😊
 
-- URL : https://sohpie925.github.io/sophie
+- URL : https://sophie925.github.io/sophie-portfolio
