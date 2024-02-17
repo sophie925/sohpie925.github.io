@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="img/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <link href="css/main.css" rel="stylesheet">
@@ -216,8 +217,8 @@
                 </div>
             </div>
         </section>
-
-        <div id="go-top-icon" class="go-top">
+        
+        <div class="go-top">
             <button class="go-top__btn">
                 <span class="material-symbols-outlined">arrow_circle_up</span>
             </button>
@@ -249,26 +250,27 @@
             }
         }, false);
         
+        let topBtn = document.querySelector('.go-top__btn'); 
+
         // 상단 이동시 숨기기/보이기
         window.addEventListener("scroll", function() {
             let scVal = window.scrollY;
-            let topBtn = document.getElementById('go-top-icon');
             if (scVal >= 50) {
                 topBtn.style.opacity = 1;
-                topBtn.classList.remove("active");
+                topBtn.style.cursor = 'pointer';
             } else {
                 topBtn.style.opacity = 0;
-                topBtn.classList.add("active");
+                topBtn.style.cursor = '';
             }
         });
 
         // top으로 스크롤 이동
-        document.getElementById('go-top-icon').addEventListener("click", function() {
+        topBtn.addEventListener("click", function() {
             window.scrollTo({
                 top: 0,
                 left: 0,
                 behavior: 'smooth'
-            })
+            });
         });
     </script>
 </body>
